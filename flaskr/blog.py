@@ -46,7 +46,7 @@ def getposts():
                   'body' : post['body'], 
                   'created' : str(post['created']), 
                   'author_id' : post['author_id'],
-                  'by_author' : "true" if post['author_id'] == g.user['id']  else "false"
+                  'by_author' : "true" if g.user != None and post['author_id'] == g.user['id']  else "false"
                   })
     
     return json.dumps(l)
