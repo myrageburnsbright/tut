@@ -16,7 +16,7 @@ def index():
         '''SELECT p.id, title, body, created, author_id, username
         FROM post p JOIN user u ON p.author_id = u.id
         ORDER BY created DESC
-        LIMIT 2'''
+        LIMIT 5'''
     ).fetchall()
     return render_template('blog/index.html', posts=posts)
 
@@ -25,7 +25,7 @@ def getposts():
 
     page = request.args.get('page')
 
-    pagesize = 2 # in index.html have hard coded value which should be equal
+    pagesize = 5 # in index.html have hard coded value which should be equal and db request above
     db = get_db()
     offset = int(page) * pagesize
 
