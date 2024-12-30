@@ -28,7 +28,7 @@
   {% endfor %}
   </div>
   <div class="pagination">
-    <div class="pagination_element" id="previous" hidden >
+    <div class="pagination_element" id="previous" >
     <button>&larr;</button>
     </div>
     <div class="pagination_element" id="page_number" >
@@ -45,6 +45,7 @@
   $(document).ready(function(){
     
     let page = 0;
+    $("#previous").hide()
     
     const postUrl = {{ url_for("blog.getposts")|tojson }}
 
@@ -83,7 +84,7 @@
       document.getElementById("page_number").innerHTML = p + 1
     }
     function updatePosts(data) {
-        if(data.length != 5) {
+        if(data.length != {{pagesize}}) {
           $("#next").hide()
         }
         else
